@@ -95,23 +95,96 @@ void Chip8::cycle()
 	switch(opcode & 0xF000)
 	{
 		case 0:
-			OP_00E0();
-		break;	
+			switch(opcode & 0x00FF)
+			{
+				case 0x00E0:
+					OP_00E0();
+					break;
+				case 0x00EE:
+					OP_00EE();
+					break;
+			}
+			break;
 		case 0x1000:
 			OP_1NNN();
-		break;
+			break;
+		case 0x2000:
+			OP_2NNN();
+			break;
+
+		case 0x3000:
+			OP_3XKK();
+			break;
+
+		case 0x4000:
+			OP_4XKK();
+			break;
+
+		case 0x5000:
+			OP_5XY0();
+			break;
+
 		case 0x6000:
 			OP_6XNN();
-		break;
+			break;
+
 		case 0x7000:
 			OP_7XNN();
-		break;
+			break;
+
+		case 0x8000:
+			switch(opcode & 0x000F)
+			{
+				case 0:
+					OP_8XY0();
+					break;
+				case 1:
+					OP_8XY1();
+					break;
+				case 2:
+					OP_8XY2();
+					break;
+				case 3:
+					OP_8XY3();
+					break;
+				case 4:
+					OP_8XY4();
+					break;
+				case 5:
+					OP_8XY5();
+					break;
+				case 6:
+					OP_8XY6();
+					break;
+				case 7:
+					OP_8XY7();
+					break;
+				case 14:
+					OP_8XYE();
+					break;
+
+			}
+			break;
+
+		case 0x9000:
+			OP_9XY0();
+			break;
+
 		case 0xA000: 
 			OP_ANNN();
-		break;
+			break;
+
+		case 0xB000:
+			OP_BNNN();
+			break;
+
+		case 0xC000:
+			OP_CXKK();
+			break;
+
 		case 0xD000:
 			OP_DXYN();
-		break;
+			break;
 	}
 		
 }

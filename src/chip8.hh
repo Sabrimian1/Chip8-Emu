@@ -106,6 +106,30 @@ public:
 	//load a byte of data into register x
 	void OP_6XKK();
 
+	//Vx += kk
+	void OP_7XKK();
+
+	//Vx = Vy
+	void OP_8XY0();
+
+	//Vx = VX OR VY
+	void OP_8XY1();
+
+	//Vx = Vx AND Vy
+	void OP_8XY2();
+
+	//Vx = Vx XOR Vy
+	void OP_8XY3();
+
+	//Add Vx, Vy make Vf the carry (if sum > 255 , we set carry flag and keep the lowest 8 bits)
+	void OP_8XY4();
+
+	//Sub Vy from Vx, if diff is > 1, we set carry flag to 1, otherwise 0 .. store diff in Vx 
+	void OP_8XY5();
+
+	//if least significant bit of Vx = 1, set carry flag to 1, otherwise 0 .. then Vx /= 2
+	void OP_8XY6();
+
 	//return frame buffer
 	uint32_t* get_frame();
 };
